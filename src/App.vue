@@ -1,16 +1,17 @@
 <template>
   <v-app>
-    <Feed/>
+    <router-view/>
+    <!-- <Home/> -->
   </v-app>
 </template>
 
 <script>
-import Feed from "./views/Feed";
+// import Home from "./views/Home";
 
 export default {
   name: "App",
   components: {
-    Feed
+    // Home
   },
   data() {
     return {

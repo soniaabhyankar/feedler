@@ -13,27 +13,37 @@
       </v-flex>
     </v-layout>
   </v-container>-->
-  <div class="card-container">
-    <div class="card-grid">
-      <div class="card" v-for="(feed, index) in feeds" :item="feed" :index="index" :key="feed._id">
-        <img src="../assets/jellyfish.jpg">
-        <a :href="feed.link" class="card-link" target="_blank">
-          <div class="card-text">
-            <p class="card-title">{{feed.title}}</p>
-            <p class="card-subtitle">
-              <span>{{feed.name}}</span>
-              <span>|</span>
-              <span>{{feed.publishedDate}}</span>
-            </p>
-            <p class="card-content">
-              {{feed.content}}
-              <a :href="feed.link" target="_blank">Continue Reading..</a>
-            </p>
-          </div>
-        </a>
+  <!-- <v-app class="feed-container"> -->
+  <div>
+    <div class="card-container">
+      <div class="card-grid">
+        <div
+          class="card"
+          v-for="(feed, index) in feeds"
+          :item="feed"
+          :index="index"
+          :key="feed._id"
+        >
+          <img src="../assets/jellyfish.jpg">
+          <a :href="feed.link" class="card-link" target="_blank">
+            <div class="card-text">
+              <p class="card-title">{{feed.title}}</p>
+              <p class="card-subtitle">
+                <span>{{feed.name}}</span>
+                <span>|</span>
+                <span>{{feed.publishedDate}}</span>
+              </p>
+              <p class="card-content">
+                {{feed.content}}
+                <a :href="feed.link" target="_blank">Continue Reading..</a>
+              </p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
+  <!-- </v-app> -->
 </template>
 
 <script>
@@ -63,15 +73,27 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
+.feed-container {
+  /* display: inline-block; */
+  /* width: 70%; */
+  border: 2px solid red;
+  /* position: relative; */
+}
 .card-container {
-  width: 45%;
-  margin: 50px auto;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 5vw;
+  width: 90%;
+  margin: 0;
   /* border: 2px solid red; */
+  padding: 70px;
 }
 .card-grid {
   /* border: 5px solid yellow; */
-  width: 100%;
   display: grid;
+  width: 100%;
+
   grid-template-columns: 1fr 1fr;
   grid-gap: 80px 100px;
 }
@@ -79,7 +101,7 @@ export default {
   box-sizing: border-box;
   /* border: 2px solid transparent; */
   border-radius: 5px;
-  /* max-height: 100%; */
+  max-height: 100%;
   box-shadow: 0px 0px 10px #949494;
   transition: ease-in-out 0.1s;
 }
@@ -131,5 +153,32 @@ img {
   max-height: 250px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
+}
+
+/* media queries */
+
+@media screen and (min-width: 400px) {
+  .card-container {
+    width: 60%;
+  }
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 900px) {
+  .card-container {
+    width: 50%;
+  }
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .card-container {
+    width: 70%;
+  }
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>
