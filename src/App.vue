@@ -1,13 +1,17 @@
 <template>
   <v-app>
-    <router-view></router-view>
+    <Feed/>
   </v-app>
 </template>
 
 <script>
+import Feed from "./views/Feed";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    Feed
+  },
   data() {
     return {
       //
