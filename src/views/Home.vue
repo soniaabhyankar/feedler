@@ -12,8 +12,16 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "Home"
+  name: "Home",
+
+  async created() {
+    const url = "http://localhost:3000/api/syncFeed";
+
+    await axios.get(url);
+  }
 };
 </script>
 
@@ -22,7 +30,7 @@ export default {
 .brand {
   width: 100%;
   min-height: 100vh;
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
   /* background: red; */
   margin: 0 auto;
   padding: 20px 30px;

@@ -24,8 +24,8 @@
           :index="index"
           :key="feed._id"
         >
-          <img src="../assets/jellyfish.jpg">
           <a :href="feed.link" class="card-link" target="_blank">
+            <img src="../assets/jellyfish.jpg">
             <div class="card-text">
               <p class="card-title">{{feed.title}}</p>
               <p class="card-subtitle">
@@ -59,7 +59,7 @@ export default {
         "../assets/just captioned these beautiful jellyfishes at the zoo! - Imgur.jpg"
     };
   },
-  async created() {
+  async mounted() {
     try {
       //console.log("helooo");
       this.feeds = await Feed.loadFeed();

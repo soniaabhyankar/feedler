@@ -2,17 +2,16 @@ import axios from 'axios';
 
 const url = 'http://localhost:3000/api/syncFeed';
 
-class Feed {
+class Provider {
 
 	//syncFeed
 
-	static loadFeed() {
+	static getProviders() {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const res = await axios.get(url);
-				const data = res.data.response.feedData;
-				// const ret = data.map(obj => obj.content.length >= 500 ? obj.content.substring(1, 200) : obj.content).filter(a => a.content !== '');
-				const ret = data.filter(a => a.content !== '');
+				const data = res.data.response.providerData;
+				// const ret = data.filter(a => a.content !== '')
 				//const allowed = 'feedData';
 				// const ret = Object.keys(data)
 				// 	.filter(key => { key == 'feedData' });
@@ -22,11 +21,7 @@ class Feed {
 				// }, {});
 
 				//const ret = data.filter(a => (a.feedData));
-
-				// if (a.content.length >= 200) {
-				// 	a.content.length
-				// }
-				resolve(ret);
+				resolve(data);
 			}
 			catch (err) {
 				reject(err);
@@ -57,18 +52,4 @@ class Feed {
 	}
 
 }
-export default Feed;
-
-// class Feed {
-
-// 	static async load() {
-// 		const res = await axios.get(url);
-
-// 		const data = res.data.response.feedData;
-
-// 		console.log(data);
-// 		return data;
-// 	}
-// }
-
-// export default Feed;
+export default Provider;
