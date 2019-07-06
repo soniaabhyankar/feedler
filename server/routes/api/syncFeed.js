@@ -40,7 +40,7 @@ function extractData(element, data) {
 	data.items.forEach(item => {
 
 		Feed.find({ link: item.link }).exec((err, feed) => {
-			if (feed.length != 0) { console.log("already present" + item.link); }
+			if (feed.length != 0) { console.log("Duplicates not allowed " + item.link); }
 			else {
 				feedObj['title'] = item.title;
 				feedObj['link'] = item.link;

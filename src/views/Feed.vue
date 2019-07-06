@@ -1,11 +1,11 @@
 <template>
-  <v-app>
-    <div class="flex-feed">
-      <SidePanel app/>
-      <!-- <v-spacing m-2 class="flex-item-right"></v-spacing> -->
-      <FeedComponent app/>
-    </div>
-  </v-app>
+  <div>
+    <!-- <div class="flex-feed"> -->
+    <SidePanel app />
+    <!-- <v-spacing m-2 class="flex-item-right"></v-spacing> -->
+    <FeedComponent app />
+    <!-- </div> -->
+  </div>
 </template>
 
 <script>
@@ -26,6 +26,8 @@ export default {
   flex-direction: row;
   /* justify-content: center; */
   /* align-items: center; */
+  background: #000;
+  border: solid 2px red;
 }
 .flex-item-left {
   display: flex;
@@ -39,5 +41,8 @@ export default {
   width: 70%;
   margin: 0 0 0 40px;
   border: 2px solid red;
+}
+div {
+  background: #fff;
 }
 </style>

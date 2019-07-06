@@ -6,6 +6,7 @@ var Feed = require('./server/models/feed');
 var Provider = require('./server/models/provider');
 var Configuration = require('./server/models/configuration');
 var syncFeeds = require('./server/routes/api/syncFeed');
+var deleteFeed = require('./server/routes/api/deleteFeed');
 var fetchAll = require('./server/routes/api/fetchAll');
 var onBoarding = require('./server/onBoarding')
 
@@ -17,6 +18,7 @@ app.use(cors());
 //Connect to mongoose
 mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
 var db = mongoose.connection;
+var time = 0;
 
 app.post('/api/newProvider', (req, res) => {
 	Provider.addProvider(req.body, (err, provider) => {
@@ -27,9 +29,14 @@ app.post('/api/newProvider', (req, res) => {
 	})
 });
 app.get('/api/syncFeed', (req, res) => {
-	if (true) {
+	if (time == 0) {
+		time = time + 1;
+		setTimeout(function () { time = 0; }, 60000);
+
 		syncFeeds();
 	}
+
+	deleteFeed((err, deleterecord) => { });
 	fetchAll((err, responseData) => {
 		if (err) {
 			throw err;
@@ -82,6 +89,6 @@ app.put('/api/configuration', (req, res) => {
 	})
 });
 
-onBoarding();
+// onBoarding();
 app.listen(3000);
 console.log('Running on port 3000');

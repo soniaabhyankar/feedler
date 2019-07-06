@@ -1,9 +1,12 @@
 <template>
   <div class="card-container">
-    <div class="card-grid">
+    <button class="visibility" @click="handleClick($event)">
+      <v-icon color="#ffc400">visibility</v-icon>
+    </button>
+    <div class="card-grid" v-if="this.visibility==true">
       <div class="card" v-for="(feed, index) in feeds" :item="feed" :index="index" :key="feed._id">
         <a :href="feed.link" class="card-link" target="_blank">
-          <img :src="feed.imgSrc">
+          <img :src="feed.imgSrc" />
           <div class="card-text">
             <p class="card-title">{{feed.title}}</p>
             <p class="card-subtitle">
@@ -14,8 +17,11 @@
               >{{feed.publishedDate}}</span>
             </p>
             <p class="card-content">
-              {{feed.content}}
-              <a :href="feed.link" target="_blank">Continue Reading..</a>
+              {{(feed.content.length >= 500) ? feed.content.substring(0,500) : feed.content}}
+              <a
+                :href="feed.link"
+                target="_blank"
+              >Continue Reading..</a>
             </p>
           </div>
         </a>
@@ -29,17 +35,36 @@ import Feed from "../services/FeedService";
 
 export default {
   name: "FeedComponent",
+
   data() {
     return {
-      feeds: {},
-      error: ""
+      feeds: [],
+      error: "",
+      visibility: true,
+      imgSrc: "../assets/jellyfish.png"
     };
   },
   async mounted() {
     try {
       this.feeds = await Feed.loadFeed();
+      //   this.feeds.filter(a => a.content.length <= 500);
+      console.log(this.feeds);
     } catch (error) {
       this.error = error.message;
+    }
+  },
+  methods: {
+    handleClick: function(event) {
+      this.changeIcon(event);
+    },
+    changeIcon: function(event) {
+      if (event.target.innerHTML == "visibility_off") {
+        event.target.innerHTML = "visibility";
+        this.visibility = true;
+      } else if (event.target.innerHTML == "visibility") {
+        event.target.innerHTML = "visibility_off";
+        this.visibility = false;
+      }
     }
   }
 };
@@ -56,6 +81,21 @@ export default {
   width: 90%;
   margin: 0;
   padding: 70px;
+  background: #fff;
+  /* border: solid 1px red; */
+}
+.visibility {
+  /* border: solid 2px red; */
+  top: 6px;
+  right: 0;
+  position: absolute;
+  text-decoration: none;
+}
+button:focus {
+  outline: none;
+}
+.visibility i {
+  font-size: 2.8rem;
 }
 .card-grid {
   display: grid;
@@ -70,6 +110,7 @@ export default {
   max-height: 100%;
   box-shadow: 0px 0px 10px #949494;
   transition: ease-in-out 0.1s;
+  /* border: solid 1px red; */
 }
 
 .card-link {
