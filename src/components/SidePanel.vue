@@ -8,13 +8,17 @@
           <!-- <button class="iconss" @click="changeIcon($event)">
             <v-icon color="#f2f2f2" size="1.25rem">visibility</v-icon>
           </button>-->
-          <a :href="provider.link" target="_blank" class="title">{{provider.name}}</a>
+          <a
+            :href="provider.websiteLink"
+            target="_blank"
+            class="title"
+            :title="'Last Updated : ' + provider.lastUpdateDate + '\nLast Record Updated : ' + provider.lastRecordUD + '\nNo. of records updated : ' + provider.noOfRecords"
+          >{{provider.name}}</a>
         </div>
       </li>
     </ul>
   </div>
 </template>
-
 <script>
 import Provider from "../services/ProviderService";
 

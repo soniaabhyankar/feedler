@@ -4,11 +4,11 @@ var mongoose=require('mongoose');
 
 var configurationSchema=mongoose.Schema({
 	updateTime:{
-		type:String,
+		type:Number,
 		required:true
 	},
 	expiryTime:{
-		type:String,
+		type:Number,
 		required:true
 	}
 },{collection: 'configuration'});

@@ -11,7 +11,7 @@ class Feed {
 			try {
 				const res = await axios.get(url);
 				const data = res.data.response.feedData;
-				const ret = data.filter(a => a.content !== '');
+				const ret = data.filter(a => a.content !== '' && a.imgSrc !== '');
 				resolve(ret);
 			}
 			catch (err) {

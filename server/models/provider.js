@@ -1,5 +1,10 @@
 var mongoose=require('mongoose');
 var moment=require('moment');
+var Feed=require('./feed');
+
+//Connect to mongoose
+mongoose.connect('mongodb://localhost/test',{useNewUrlParser:true});
+var db=mongoose.connection;
 
 //Provider Schema
 
@@ -27,9 +32,12 @@ var providerSchema=mongoose.Schema({
 		default:true,
 		default:"RSS"
 	},
-	suscribed:{
-		type:Boolean,
-		default:true
+	subscribed:{
+		type:Number,
+		default:1
+	},
+	websiteLink:{
+		type:String
 	}
 },{collection: 'provider'});
 
@@ -48,24 +56,15 @@ module.exports.addProvider=(provider,callback)=>{
 	Provider.create(provider,callback);
 }
 
-module.exports.updateProvider=(id,provider,options,callback)=>{
+module.exports.updateProvider=(id,count,options,callback)=>{
 	var query={_id:id};
-	var update="";
-	if(provider.noOfRecords==0){
-		update={
-			lastUpdateDate:provider.lastUpdateDate,
-			noOfRecords:provider.noOfRecords
-		};
-	}
-	else{
-		update={
-			lastUpdateDate:provider.lastUpdateDate,
-			lastRecordUD:provider.lastRecordUD,
-			noOfRecords:provider.noOfRecords
-		};
-	}
+	var update={
+			lastUpdateDate:moment().format().toString(),
+			lastRecordUD:moment().format().toString(),
+			noOfRecords:count
+			};
 	Provider.updateOne(query,update,options,callback);
-}
+}	
 
 
 module.exports.updateProviderName=(id,provider,options,callback)=>{
@@ -76,10 +75,11 @@ module.exports.updateProviderName=(id,provider,options,callback)=>{
 	Provider.updateOne(query,update,options,callback);
 }
 
-module.exports.updateProviderSubscription=(id,provider,options,callback)=>{
+module.exports.updateProviderSubscription=(id,options,callback)=>{
 	var query={_id:id};
-	var update={
-		suscribed:!suscribed
-	};
-	Provider.updateOne(query,update,options,callback);
+	var update;
+	Provider.find(query).exec((err,result)=>{
+		update=(result.suscribed==1)?update={suscribed:0}:update={suscribed:1};
+			Provider.updateOne(query,update,options,callback);
+	})
 }

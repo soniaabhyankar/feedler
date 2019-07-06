@@ -3,13 +3,15 @@
     <div class="card-grid">
       <div class="card" v-for="(feed, index) in feeds" :item="feed" :index="index" :key="feed._id">
         <a :href="feed.link" class="card-link" target="_blank">
-          <img src="../assets/jellyfish.jpg">
+          <img :src="feed.imgSrc">
           <div class="card-text">
             <p class="card-title">{{feed.title}}</p>
             <p class="card-subtitle">
               <span>{{feed.name}}</span>
               <span>|</span>
-              <span>{{feed.publishedDate}}</span>
+              <span
+                :title="'Received Date : ' + feed.receivedDate + '\nPublished Date : ' + feed.publishedDate"
+              >{{feed.publishedDate}}</span>
             </p>
             <p class="card-content">
               {{feed.content}}

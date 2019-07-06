@@ -22,13 +22,19 @@ var feedSchema=mongoose.Schema({
 		type:String,
 		required:true
 	},
-	imgSrc:{
+	receivedDate:{
 		type:String,
-		default:true
+		required:true
+	},
+	imgSrc:{
+		type:String
 	},
 	name:{
 		type:String,
 		required:true
+	},
+	websiteLink:{
+		type:String
 	}
 },{collection: 'feed'});
 
