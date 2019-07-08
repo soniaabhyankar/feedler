@@ -57,8 +57,19 @@ var providerData = [
 		type: "RSS",
 		subscribed: 1,
 		websiteLink: "https://www.space.com"
+	},
+	{
+		name: "Malfunction Link",
+		link: "https://jsonplaceholder.typicode.com/posts",
+		lastUpdateDate: "",
+		lastRecordUD: "",
+		noOfRecords: "",
+		type: "",
+		subscribed: 1,
+		websiteLink: "https://jsonplaceholder.typicode.com"
 	}
 ];
+
 var configData = {
 	name: "configuration",
 	updateTime: 10,
