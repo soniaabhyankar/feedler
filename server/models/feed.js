@@ -1,52 +1,52 @@
-var mongoose=require('mongoose');
-var Provider=require('./provider');
+var mongoose = require('mongoose');
+var Provider = require('./provider');
 //Connect to mongoose
-mongoose.connect('mongodb://localhost/test',{useNewUrlParser:true});
-var db=mongoose.connection;
+mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true });
+var db = mongoose.connection;
 
 //Feed Schema
 
-var feedSchema=mongoose.Schema({
-	title:{
-		type:String,
-		required:true
+var feedSchema = mongoose.Schema({
+	title: {
+		type: String,
+		required: true
 	},
-	link:{
-		type:String,
-		required:true
+	link: {
+		type: String,
+		required: true
 	},
-	content:{
-		type:String
+	content: {
+		type: String
 	},
-	publishedDate:{
-		type:String,
-		required:true
+	publishedDate: {
+		type: String,
+		required: true
 	},
-	receivedDate:{
-		type:String,
-		required:true
+	receivedDate: {
+		type: String,
+		required: true
 	},
-	imgSrc:{
-		type:String
+	imgSrc: {
+		type: String
 	},
-	name:{
-		type:String,
-		required:true
+	name: {
+		type: String,
+		required: true
 	},
-	websiteLink:{
-		type:String
+	websiteLink: {
+		type: String
 	}
-},{collection: 'feed'});
+}, { collection: 'feed' });
 
-var Feed=module.exports=mongoose.model('Feed',feedSchema);
+var Feed = module.exports = mongoose.model('Feed', feedSchema);
 
-module.exports.addFeed=(feed,callback)=>{
-	Feed.create(feed,callback);
+module.exports.addFeed = (feed, callback) => {
+	Feed.create(feed, callback);
 }
 
-module.exports.deleteFeed=(id,callback)=>{
-	var query={_id:id};
-	Feed.remove(query,callback);
+module.exports.deleteFeed = (id, callback) => {
+	var query = { _id: id };
+	Feed.remove(query, callback);
 }
 
 // getFeeds();
