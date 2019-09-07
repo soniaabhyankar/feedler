@@ -1,6 +1,6 @@
 <template>
   <div class="side-nav">
-    <a href="http://localhost:8080/feed" class="brand-name">Feedler</a>
+    <a href="#" class="brand-name">Feedler</a>
 
     <ul>
       <li v-for="provider in providers" :key="provider._id">
@@ -63,6 +63,7 @@ export default {
   position: fixed;
   height: 100vh;
   background: #545454;
+  border: 5px solid yellow;
 }
 a {
   text-decoration: none;
@@ -85,5 +86,11 @@ ul {
 }
 .title:hover {
   color: #ffc400;
+}
+@media screen and (max-width: 1200px) {
+  .side-nav {
+    /* display: block; */
+    background: #000;
+  }
 }
 </style>

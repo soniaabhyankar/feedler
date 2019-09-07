@@ -9,7 +9,7 @@ const { JSDOM } = jsdom;
 
 
 //Connect to mongoose
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true });
 var db = mongoose.connection;
 
 //fetching provider name and link from database

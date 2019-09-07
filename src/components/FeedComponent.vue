@@ -1,5 +1,6 @@
 <template>
   <div class="card-container">
+    <h1>Feedler</h1>
     <button class="visibility" @click="handleClick($event)">
       <v-icon color="#ffc400">visibility</v-icon>
     </button>
@@ -48,7 +49,7 @@ export default {
     try {
       this.feeds = await Feed.loadFeed();
       //   this.feeds.filter(a => a.content.length <= 500);
-      console.log(this.feeds);
+      // console.log(this.feeds);
     } catch (error) {
       this.error = error.message;
     }
@@ -77,15 +78,16 @@ export default {
   display: inline-block;
   position: absolute;
   top: 0;
-  right: 5vw;
-  width: 90%;
+  /* right: 5vw; */
+  right: 0;
+  width: 100%;
   margin: 0;
   padding: 70px;
   background: #fff;
-  /* border: solid 1px red; */
+  border: solid 1px red;
 }
 .visibility {
-  /* border: solid 2px red; */
+  border: solid 2px red;
   top: 6px;
   right: 0;
   position: absolute;
@@ -100,7 +102,7 @@ button:focus {
 .card-grid {
   display: grid;
   width: 100%;
-
+  border: 2px solid blue;
   grid-template-columns: 1fr 1fr;
   grid-gap: 80px 100px;
 }
@@ -110,7 +112,7 @@ button:focus {
   max-height: 100%;
   box-shadow: 0px 0px 10px #949494;
   transition: ease-in-out 0.1s;
-  /* border: solid 1px red; */
+  border: solid 9px green;
 }
 
 .card-link {
@@ -157,7 +159,7 @@ img {
 
 /* media queries */
 
-@media screen and (min-width: 400px) {
+/* @media screen and (min-width: 400px) {
   .card-container {
     width: 60%;
   }
@@ -179,6 +181,75 @@ img {
   }
   .card-grid {
     grid-template-columns: 1fr 1fr;
+  }
+} */
+
+@media screen and (max-width: 1200px) {
+  .card-container {
+    width: 100%;
+  }
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  h1 {
+    text-align: center;
+    /* border: 2px solid red; */
+    padding: 10px 20px;
+    margin-bottom: 60px;
+    font-size: 5rem;
+    color: #ffc400;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.185);
+  }
+}
+@media screen and (max-width: 800px) {
+  .card-container {
+    width: 100%;
+    /* padding: 0; */
+  }
+  .card-grid {
+    width: 70%;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+  }
+  h1 {
+    text-align: center;
+    /* border: 2px solid red; */
+    padding: 10px 20px;
+    margin-bottom: 60px;
+    font-size: 4rem;
+    color: #ffc400;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.185);
+  }
+}
+@media screen and (max-width: 450px) {
+  .card-container {
+    width: 100%;
+    padding: 70px 0;
+  }
+  .card-grid {
+    width: 80%;
+    margin: 0 auto;
+    grid-template-columns: 1fr;
+    grid-row-gap: 100px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+  .card-subtitle {
+    font-size: 0.6rem;
+  }
+  .card-content {
+    font-size: 0.8rem;
+  }
+  h1 {
+    text-align: center;
+    /* border: 2px solid red; */
+    padding: 10px 20px;
+    margin-bottom: 50px;
+    font-size: 2.7rem;
+    color: #ffc400;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.185);
   }
 }
 </style>

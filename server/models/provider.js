@@ -11,7 +11,8 @@ var db = mongoose.connection;
 var providerSchema = mongoose.Schema({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	link: {
 		type: String,

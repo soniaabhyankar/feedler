@@ -12,6 +12,7 @@ var onBoarding = require('./server/onBoarding')
 
 const cors = require('cors');
 
+const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.use(cors());
@@ -19,6 +20,18 @@ app.use(cors());
 mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true });
 var db = mongoose.connection;
 var time = 0;
+
+
+app.get('/', async (req, res) => {
+	try {
+		await onBoarding();
+		res.send();
+	}
+	catch (err) {
+		res.status(400).send();
+	}
+})
+
 
 app.post('/api/newProvider', (req, res) => {
 	Provider.addProvider(req.body, (err, provider) => {
@@ -89,6 +102,8 @@ app.put('/api/configuration', (req, res) => {
 	})
 });
 
-onBoarding();
-app.listen(3000);
-console.log('Running on port 3000');
+
+// onBoarding();
+app.listen(port, () => {
+	console.log('Server running on port ' + port);
+});
