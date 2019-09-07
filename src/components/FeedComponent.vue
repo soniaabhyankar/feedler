@@ -84,10 +84,10 @@ export default {
   margin: 0;
   padding: 70px;
   background: #fff;
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 .visibility {
-  border: solid 2px red;
+  /* border: solid 2px red; */
   top: 6px;
   right: 0;
   position: absolute;
@@ -102,7 +102,7 @@ button:focus {
 .card-grid {
   display: grid;
   width: 100%;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   grid-template-columns: 1fr 1fr;
   grid-gap: 80px 100px;
 }
@@ -112,7 +112,7 @@ button:focus {
   max-height: 100%;
   box-shadow: 0px 0px 10px #949494;
   transition: ease-in-out 0.1s;
-  border: solid 9px green;
+  /* border: solid 9px green; */
 }
 
 .card-link {
@@ -155,6 +155,15 @@ img {
   max-height: 250px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
+}
+h1 {
+  text-align: center;
+  /* border: 2px solid red; */
+  padding: 10px 20px;
+  margin-bottom: 60px;
+  font-size: 5.5rem;
+  color: #ffc400;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.185);
 }
 
 /* media queries */

@@ -7,7 +7,7 @@ var Configuration = require('./models/configuration');
 mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useCreateIndex: true });
 var db = mongoose.connection;
 
-db.dropDatabase();
+// db.dropDatabase();
 var providerData = [
 	{
 		name: "Times Of India",
